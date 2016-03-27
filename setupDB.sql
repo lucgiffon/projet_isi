@@ -27,13 +27,17 @@ CREATE TABLE TmpMortaliteInfantile
 
 CREATE TABLE TmpChomage
 (
-  countryCode CHAR(3) NOT NULL FOREIGN KEY REFERENCES TmpCoordCountries(code),
-  idValue INT NOT NULL REFERENCES TmpValues(id)
+  countryCode CHAR(3) NOT NULL,
+  idValue INT,
+  FOREIGN KEY (countryCode) REFERENCES TmpCoordCountries(code),
+  FOREIGN KEY (idValue) REFERENCES TmpValues(id)
 );
 
 CREATE TABLE TmpHomicidesIntentionnels
 (
-  countryCode CHAR(3) NOT NULL FOREIGN KEY REFERENCES TmpCoordCountries(code),
-  idValue INT NOT NULL REFERENCES TmpValues(id)
+  countryCode CHAR(3) NOT NULL,
+  idValue INT,
+  FOREIGN KEY (countryCode) REFERENCES TmpCoordCountries(code),
+  FOREIGN KEY (idValue) REFERENCES TmpValues(id)
 );
 
