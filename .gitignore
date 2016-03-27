@@ -1,0 +1,4 @@
+*.autosave
+*.~lock*
+*.classpath
+*.project

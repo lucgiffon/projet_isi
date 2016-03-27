@@ -34,7 +34,7 @@ public class StyleLab {
      * the shapefile on screen
      */
     void displayShapefile() throws Exception {
-        File file = new File("src/main/resources/countries/countries.shp");
+        File file = new File("target/classes/countries/countries.shp");
         if (file == null) {
             return;
         }
