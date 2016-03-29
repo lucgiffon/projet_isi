@@ -34,7 +34,9 @@ public class StyleLab {
      * the shapefile on screen
      */
     void displayShapefile() throws Exception {
-        File file = new File("target/classes/countries/countries.shp");
+    	File jar= new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
+//    	System.out.println(jar.getParent() + "/classes/countries/countries.shp");
+        File file = new File(jar.getParent() + "/classes/countries/countries.shp");
         if (file == null) {
             return;
         }
