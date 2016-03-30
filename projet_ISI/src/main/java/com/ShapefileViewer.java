@@ -1,3 +1,5 @@
+package com;
+
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -50,8 +52,11 @@ public class ShapefileViewer extends JMapFrame {
      */ 
     public static void main(String[] args) { 
         final ShapefileViewer viewer = new ShapefileViewer("Shapefile viewer"); 
- 
-        File dataDir = new File("/home/sebastien/workspace/tutorial/countries/"); 
+    	
+        File jar= new File(ShapefileViewer.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+        File dataDir = new File(jar.getParent() + "/classes/countries/");
+        
+        // File dataDir = new File("/home/sebastien/workspace/tutorial/countries/"); 
         viewer.setWorkingDir(dataDir); 
  
         viewer.setSize(800, 600); 

@@ -5,7 +5,7 @@ USE projetisiGouverneurGiffon;
 CREATE TABLE TmpCoordCountries
 (
   code CHAR(3) PRIMARY KEY NOT NULL,
-  countryName VARCHAR(255) NOT NULL,
+  name VARCHAR(255),
   longitude FLOAT,
   lattitude FLOAT
 );
@@ -41,3 +41,23 @@ CREATE TABLE TmpHomicidesIntentionnels
   FOREIGN KEY (idValue) REFERENCES TmpValues(id)
 );
 
+-- Vues
+
+CREATE VIEW ViewCountries AS
+SELECT CC.name, CC.code, CC.longitude, CC.lattitude
+FROM TmpCoordCountries CC;
+
+CREATE VIEW ViewMortaliteInfantile AS
+SELECT countryCode, date, value 
+FROM TmpMortaliteInfantile MI, TmpValues V
+WHERE MI.idValue = V.id;
+
+CREATE VIEW ViewChomage AS
+SELECT countryCode, date, value 
+FROM TmpChomage C, TmpValues V
+WHERE C.idValue = V.id;
+
+CREATE VIEW ViewHomicidesIntentionnels AS
+SELECT countryCode, date, value 
+FROM TmpHomicidesIntentionnels HI, TmpValues V
+WHERE HI.idValue = V.id;

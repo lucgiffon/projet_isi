@@ -2,7 +2,7 @@ if __name__ == '__main__':
 
 	count = []
 	twoBeThree = {}
-	f = open("sources/cow.csv", 'r')
+	f = open("projet_ISI/src/main/resources/sources/cow.csv", 'r')
 	line = f.readline()
 	line = f.readline()
 	while line != "":
@@ -12,7 +12,7 @@ if __name__ == '__main__':
 	f.close()
 
 	coords = {}
-	f = open("sources/longlat.csv")
+	f = open("projet_ISI/src/main/resources/sources/longlat.csv")
 	line = f.readline()
 	while line != "":
 		try:
@@ -24,11 +24,26 @@ if __name__ == '__main__':
 			count.append(splitted_line[0].strip())
 	f.close()
 
-	f = open("sources/coord_countries.csv", "w")
-	for c in sorted(coords.keys()):
-		f.write(c + ";" + coords[c][0] + ";" + coords[c][1] + "\n")
+	countryNames = {}
+	f = open("projet_ISI/src/main/resources/sources/Chomage.csv")
+	f.readline()
+	line = f.readline()
+	while line != "":
+		splitted_line = line.split(";")
+		countryNames[splitted_line[1]] = splitted_line[0]
+		line = f.readline()
+	f.close()
+			
 
+	f = open("projet_ISI/src/main/resources/sources/CoordCountries.csv", "w")
+	
+	for c in sorted(coords.keys()):
+		try:
+			f.write(c + ";" + countryNames[c].replace("'", "\\\\'") + ";" + coords[c][0] + ";" + coords[c][1] + "\n")
+		except Exception:
+			continue
+		
 	f.close()
 
-	print(count)
+	#~ print(count)
 
