@@ -9,14 +9,15 @@ import view.MapTest;
 import view.MapView;
 
 public class MapControler {
-	private MapView graphicInterface = null;
+	private MapView graphicInterface;
  
-	private MapModel model = null;
+	private MapModel model;
  
 	public MapControler (MapModel model){
 		this.model = model;
-		graphicInterface = new MapTest(this);
+		this.graphicInterface = new MapTest(this);
 		addListenersToModel();
+		((MapTest) graphicInterface).actionPerformed();
 	}
  
 	private void addListenersToModel() {

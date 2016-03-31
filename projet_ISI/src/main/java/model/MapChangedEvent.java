@@ -4,16 +4,16 @@ import java.util.EventObject;
 import java.util.Hashtable;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class MapChangedEvent extends EventObject {
 	private Hashtable<String, Integer> newDates;
 	private ResultSet newValues;
  
-	public MapChangedEvent(Object source, Hashtable<String, Integer> newDates, ResultSet newValues) {
+	public MapChangedEvent(Object source, Hashtable<String, Integer> newDates, ResultSet values) {
 		super(source);
- 
 		this.newDates = newDates;
-		this.newValues = newValues;
+		this.newValues = values;
 	}
  
 	public Hashtable<String, Integer> getNewDates(){

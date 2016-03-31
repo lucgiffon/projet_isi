@@ -1,18 +1,13 @@
 package model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
 
-import mediator.CountryWrapper;
-import mediator.MainDataWrapper;
 import mediator.Mediator;
 
 public class MapModel {
@@ -30,10 +25,17 @@ public class MapModel {
  
 	public void doQuery(Hashtable<String, Integer> dates, ArrayList<String> pays) throws SQLException {
 		//TODO parseQuery method?
+		String queryString;
 		mediator.setupDB(dates, pays);
-//		ResultSet values = null;
+		queryString = "SELECT CT.name, CT.code, CT.longitude, CT.lattitude, C.value, HI.value, MI.value "
+				+ "FROM ViewChomage C, ViewHomicidesIntentionnels HI, ViewMortaliteInfantile MI, ViewCountries CT "
+				+ "WHERE C.countryCode = CT.code" ;
+		
+		statement = connection.createStatement();
+		ResultSet values = statement.executeQuery(queryString);
+		
 		// TODO
-//		fireMapChanged(dates, values);
+		fireMapChanged(dates, values);
 	}
 
 	public void addMapListener(MapListener listener){

@@ -18,6 +18,7 @@ public class Mediator {
 		// TODO Auto-generated method stub
 		this.tableNames = tableNames;
 		this.connection = connection;
+		emptyTmpTables();
 		for (int i = 0; i < dataWrappers.length; i++) {
 			dataWrappers[i] = new MainDataWrapper(tableNames[i], connection);
 		}

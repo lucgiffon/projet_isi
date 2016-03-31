@@ -16,21 +16,20 @@ public class MapTest extends MapView implements ActionListener {
 	
 	public MapTest(MapControler controler) {
 		super(controler);
-		actionPerformed();
 	}
 
 	public void mapChanged(MapChangedEvent event) {
-		ResultSet rs = event.getNewValues();
+		ResultSet values = event.getNewValues();
+		System.out.println("Name\tCode\tLongitude\tLattitude\tRateC\tRateHI\tRateMI");
 		
 		try {
-			while (rs.next()) {
-				// TODO
+			while (values.next()) {
+				System.out.println(values.getString(1) + "\t" + values.getString(2) + "\t" + values.getFloat(3) + "\t" + values.getFloat(4) + "\t" + values.getFloat(5) + "\t" + values.getFloat(6) + "\t" + values.getFloat(7));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	public void actionPerformed(ActionEvent e) {
