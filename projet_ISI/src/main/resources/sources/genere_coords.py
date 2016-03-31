@@ -2,7 +2,7 @@ if __name__ == '__main__':
 
 	count = []
 	twoBeThree = {}
-	f = open("projet_ISI/src/main/resources/sources/cow.csv", 'r')
+	f = open("cow.csv", 'r')
 	line = f.readline()
 	line = f.readline()
 	while line != "":
@@ -12,7 +12,7 @@ if __name__ == '__main__':
 	f.close()
 
 	coords = {}
-	f = open("projet_ISI/src/main/resources/sources/longlat.csv")
+	f = open("longlat.csv")
 	line = f.readline()
 	while line != "":
 		try:
@@ -25,7 +25,7 @@ if __name__ == '__main__':
 	f.close()
 
 	countryNames = {}
-	f = open("projet_ISI/src/main/resources/sources/Chomage.csv")
+	f = open("Chomage.csv")
 	f.readline()
 	line = f.readline()
 	while line != "":
@@ -35,7 +35,7 @@ if __name__ == '__main__':
 	f.close()
 			
 
-	f = open("projet_ISI/src/main/resources/sources/CoordCountries.csv", "w")
+	f = open("CoordCountries.csv", "w")
 	
 	for c in sorted(coords.keys()):
 		try:

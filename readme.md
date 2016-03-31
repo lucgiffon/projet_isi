@@ -36,7 +36,7 @@ Allez dans le repertoire $HOME/.m2/
 
 `cd $HOME/.m2/`
 
-Creez un fichier settings.xml et ouvrez le avec votre éditeur de texte favori, ajoutez-y le code suivant:
+Creez un fichier settings.xml et ouvrez le avec votre éditeur de texte favori, ajoutez-y le code suivant. Il permet d'indiquer à Maven votre profil d'utilisateur et la façon dont il doit accéder à votre base de données:
 
 
 **Attention!! Regardez bien le code et remplacez les champs qui le nécessitent**
@@ -69,5 +69,8 @@ Creez un fichier settings.xml et ouvrez le avec votre éditeur de texte favori, 
 
 **Attention!! Regardez bien le code et remplacez les champs qui le nécessitent**
 
-`mvn clean install assembly:single liquibase:update -PidProfile`
+    cd projet_isi/projet_ISI
+    mvn clean install assembly:single liquibase:update -P_idProfile_
+    cd target/
+    java -jar projetisiGouverneurGiffon-jar-with-dependencies.jar
 
