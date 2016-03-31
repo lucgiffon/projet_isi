@@ -61,7 +61,7 @@ public class StyleLab {
         JMapFrame.showMap(map);
 
 	JFrame window = new JFrame();
-        WindowSourcesView windowChoice = new WindowSourcesView();    
+        WindowSourcesViewer windowChoice = new WindowSourcesViewer();    
     }
     
     /**
