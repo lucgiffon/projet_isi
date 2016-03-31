@@ -58,7 +58,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.StyleLab</mainClass>
+							<mainClass>com.JMap</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

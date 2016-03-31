@@ -29,7 +29,7 @@ public class MapModel {
 		mediator.setupDB(dates, pays);
 		queryString = "SELECT CT.name, CT.code, CT.longitude, CT.lattitude, C.value, HI.value, MI.value "
 				+ "FROM ViewChomage C, ViewHomicidesIntentionnels HI, ViewMortaliteInfantile MI, ViewCountries CT "
-				+ "WHERE C.countryCode = CT.code" ;
+				+ "WHERE C.countryCode = CT.code AND HI.countryCode = CT.code AND MI.countryCode = CT.code" ;
 		
 		statement = connection.createStatement();
 		ResultSet values = statement.executeQuery(queryString);

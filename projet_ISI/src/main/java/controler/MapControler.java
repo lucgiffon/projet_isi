@@ -16,8 +16,7 @@ public class MapControler {
 	public MapControler (MapModel model){
 		this.model = model;
 		this.graphicInterface = new MapTest(this);
-		addListenersToModel();
-		((MapTest) graphicInterface).actionPerformed();
+		addListenersToModel();		
 	}
  
 	private void addListenersToModel() {
@@ -26,6 +25,7 @@ public class MapControler {
  
 	public void displayViews(){
 		graphicInterface.display();
+		((MapTest) graphicInterface).actionPerformed();
 	}
  
 	public void closeViews(){
