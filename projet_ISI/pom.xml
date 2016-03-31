@@ -56,6 +56,7 @@
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
+					<finalName>projetisiGouverneurGiffon</finalName>                   
 					<archive>
 						<manifest>
 							<mainClass>com.JMap</mainClass>
