@@ -81,6 +81,18 @@
              		<mainClass>com.StyleLab</mainClass>
         		</configuration>
         	</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<configuration>
+					<changeLogFile>${basedir}/src/main/liquibase/master.xml</changeLogFile>
+					<driver>com.mysql.jdbc.Driver</driver>
+					<url>jdbc:mysql://${mysql.host}:${mysql.port}/${mysql.db}?createDatabaseIfNotExist=true</url>
+					<username>${mysql.login}</username>
+					<password>${mysql.password}</password>
+				</configuration>
+			</plugin>        	
 		</plugins>
 	</build>
+
 </project>

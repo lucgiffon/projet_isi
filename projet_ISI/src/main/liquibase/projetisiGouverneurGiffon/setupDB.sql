@@ -1,7 +1,6 @@
-CREATE DATABASE projetisiGouverneurGiffon;
+--liquibase formatted sql
 
-USE projetisiGouverneurGiffon;
-
+--changeset luc:1 dbms:mysql
 CREATE TABLE TmpCoordCountries
 (
   code CHAR(3) PRIMARY KEY NOT NULL,
@@ -41,7 +40,7 @@ CREATE TABLE TmpHomicidesIntentionnels
   FOREIGN KEY (idValue) REFERENCES TmpValues(id)
 );
 
--- Vues
+--changeset luc:2 dbms:mysql
 
 CREATE VIEW ViewCountries AS
 SELECT CC.name, CC.code, CC.longitude, CC.lattitude
