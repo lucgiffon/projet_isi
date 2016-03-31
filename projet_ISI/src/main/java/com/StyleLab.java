@@ -2,6 +2,8 @@ package com;
 
 import java.io.File;
 
+import javax.swing.JFrame;
+
 import org.geotools.data.FeatureSource;
 import org.geotools.data.FileDataStore;
 import org.geotools.data.FileDataStoreFinder;
@@ -46,7 +48,7 @@ public class StyleLab {
 
         // Create a map content and add our shapefile to it
         MapContent map = new MapContent();
-        map.setTitle("StyleLabMap2");
+        map.setTitle("MyMap");
 
         // Create a basic Style to render the features
         org.geotools.styling.Style style = createStyle(file, featureSource);
@@ -60,8 +62,8 @@ public class StyleLab {
         // Now display the map
         JMapFrame.showMap(map);
 
-	JFrame window = new JFrame();
-        WindowSourcesView windowChoice = new WindowSourcesView();    
+        JFrame window = new JFrame();
+        view.WindowSourcesView windowChoice = new view.WindowSourcesView();    
     }
     
     /**

@@ -1,3 +1,5 @@
+package view;
+
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -19,7 +21,7 @@ import javax.swing.JToggleButton;
 
 
 @SuppressWarnings("serial")
-public class WindowSourcesView extends MapView {
+public class WindowSourcesView {
 	
 	public JFrame frame;
 	public JTextField txtChoixDuMode;
@@ -74,6 +76,10 @@ public class WindowSourcesView extends MapView {
 	    			//TODO action sur le bouton Homicides Intentionnels
 	    		}
 	    		else {
+	    			comboBoxHI.disable();
+	    			comboBoxHI.setSelectedIndex(0);
+	    			comboBoxPaysHI.disable();
+	    			//comboBoxPaysHI.setSelectedIndex(0);
 	    			//TODO on relache la table qui affecte les Homicides Intentionnels
 	    		}
 	        	
@@ -120,6 +126,10 @@ public class WindowSourcesView extends MapView {
 	    			//TODO action sur le bouton Mortalité Infantile
 	    		}
 	    		else {
+	    			comboBoxMI.disable();
+	    			comboBoxMI.setSelectedIndex(0);
+	    			comboBoxPaysMI.disable();
+	    			//comboBoxPaysMI.setSelectedIndex(0);
 	    			//TODO on relache la table qui affecte les Mortalité Infantile
 	    		}
 	        	
@@ -160,6 +170,10 @@ public class WindowSourcesView extends MapView {
 	    			//TODO action sur le bouton Mortalité Infantile
 	    		}
 	    		else {
+	    			comboBoxC.disable();
+	    			comboBoxC.setSelectedIndex(0);
+	    			comboBoxPaysC.disable();
+	    			//comboBoxPaysC.setSelectedIndex(0);
 	    			//TODO on relache la table qui affecte les Mortalité Infantile
 	    		}
 	        	
