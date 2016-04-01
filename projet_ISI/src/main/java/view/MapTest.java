@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 import controler.MapControler;
+import model.CountryListChangedEvent;
 import model.MapChangedEvent;
 
 public class MapTest extends MapView implements ActionListener {
@@ -46,10 +47,14 @@ public class MapTest extends MapView implements ActionListener {
 		ArrayList<String> pays = new ArrayList<String>();
 		pays.add("UKR");
 		pays.add("GBR");
-		dates.put("Chomage", 1995);
+		dates.put("Chomage", -1);
 		dates.put("MortaliteInfantile", 1995);
 		dates.put("HomicidesIntentionnels", 1995);
 		getControler().userQuery(dates, pays);
+	}
+	
+	public void actionPerformed2() {
+		getControler().getCountryList();
 	}
 
 	@Override
@@ -63,6 +68,20 @@ public class MapTest extends MapView implements ActionListener {
 	public void close() {
 		// TODO Auto-generated method stub
 		System.out.println("Fermeture de l'interface graphique");
+		
+	}
+
+	public void countryListChanged(CountryListChangedEvent event) {
+		ResultSet countryList = event.getCountryList();
+		System.out.println("Nom complet du pays\tCode");
+		try {
+			while (countryList.next()) {
+				System.out.println(countryList.getString(1) + "\t" + countryList.getString(2));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

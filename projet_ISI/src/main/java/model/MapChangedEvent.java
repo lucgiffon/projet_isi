@@ -4,7 +4,6 @@ import java.util.EventObject;
 import java.util.Hashtable;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class MapChangedEvent extends EventObject {
 	private Hashtable<String, Integer> newDates;

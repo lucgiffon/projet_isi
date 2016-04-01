@@ -28,8 +28,11 @@ public class MapModel {
 		String queryString;
 		mediator.setupDB(dates, pays);
 		queryString = "SELECT CT.name, CT.code, CT.longitude, CT.lattitude, C.value, HI.value, MI.value "
-				+ "FROM ViewChomage C, ViewHomicidesIntentionnels HI, ViewMortaliteInfantile MI, ViewCountries CT "
-				+ "WHERE C.countryCode = CT.code AND HI.countryCode = CT.code AND MI.countryCode = CT.code" ;
+				+ "FROM ViewCountries CT "
+				+ "LEFT JOIN ViewChomage C ON C.countryCode = CT.code "
+				+ "LEFT JOIN ViewHomicidesIntentionnels HI ON HI.countryCode = CT.code "
+				+ "LEFT JOIN ViewMortaliteInfantile MI ON MI.countryCode = CT.code "
+				+ "WHERE C.countryCode = CT.code OR HI.countryCode = CT.code OR MI.countryCode = CT.code;" ;
 		
 		statement = connection.createStatement();
 		ResultSet values = statement.executeQuery(queryString);
@@ -44,5 +47,19 @@ public class MapModel {
 
 	public void fireMapChanged(Hashtable<String, Integer> dates, ResultSet values){
 		((MapListener) listener).mapChanged(new MapChangedEvent(this, dates, values));
+	}
+	
+	public void fireCountryListChanged(ResultSet values) {
+		((MapListener) listener).countryListChanged(new CountryListChangedEvent(this, values));
+	}
+
+	public void searchCountries() throws SQLException {
+		String queryString;
+		queryString = "SELECT name, code FROM ViewCountries;";
+		statement = connection.createStatement();
+		ResultSet values = statement.executeQuery(queryString);
+		
+		fireCountryListChanged(values);
+		
 	}
 }

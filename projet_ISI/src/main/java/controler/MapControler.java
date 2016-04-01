@@ -25,7 +25,8 @@ public class MapControler {
  
 	public void displayViews(){
 		graphicInterface.display();
-		((MapTest) graphicInterface).actionPerformed();
+		//((MapTest) graphicInterface).actionPerformed();
+		((MapTest) graphicInterface).actionPerformed2();
 	}
  
 	public void closeViews(){
@@ -36,8 +37,15 @@ public class MapControler {
 		try {
 			model.doQuery(dates, pays);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void getCountryList() {
+		try {
+			model.searchCountries();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
 	}
 }
