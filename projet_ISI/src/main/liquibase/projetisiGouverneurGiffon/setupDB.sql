@@ -5,8 +5,8 @@ CREATE TABLE TmpCoordCountries
 (
   code CHAR(3) PRIMARY KEY NOT NULL,
   name VARCHAR(255),
-  longitude FLOAT,
-  lattitude FLOAT
+  lattitude FLOAT,
+  longitude FLOAT
 );
 
 CREATE TABLE TmpValues

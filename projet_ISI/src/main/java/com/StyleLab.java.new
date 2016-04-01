@@ -32,6 +32,7 @@ public class StyleLab extends MapView {
 	static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
     static FilterFactory filterFactory = CommonFactoryFinder.getFilterFactory();
     private MapControler controler;
+    private Hastable<String, String> countrYlist;
     
     public static void main(String[] args) throws Exception {
       //  StyleLab me = new StyleLab();
@@ -41,6 +42,7 @@ public class StyleLab extends MapView {
     public StyleLab(MapControler controler) {
     	super(controler);
     	this.controler = controler;
+    	controler.getCountryList();
     }
     
     /**
@@ -143,6 +145,22 @@ public class StyleLab extends MapView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+	}
+	
+	public void countryListChanged(CountryListChangedEvent event) {
+		// Set le hashtable avec le resultSet (event.getCountryList())
+		// 1 -> nomdu pays
+		// 2 -> codeCOuntry
+		ResultSet values = event.getCountryList();
+		
+		try {
+			while (values.next()) {
+				countrYlist.put(values.getString(1), values.getString(2));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

@@ -32,10 +32,12 @@ public class WindowSourcesView {
 	public JTextField txtChoixDuMode;
 	private MapControler controler;
 	private Hashtable<String, Integer> dates = new Hashtable<String, Integer>();
+	private Hashtabel<String String> CoutnryList;
 
 	
-	public WindowSourcesView(final MapControler controler) {
-		
+	public WindowSourcesView(final MapControler controler, final Hashtable countrYlist) {
+		//TODO ajouter des valuers par default (-1) à l'objet dates exemple: dates.put("Chomage", -1)
+		this.countryList = countryList
 		this.controler = controler;
 		final JComboBox comboBoxHI = new JComboBox();
 		final JComboBox comboBoxMI = new JComboBox();
