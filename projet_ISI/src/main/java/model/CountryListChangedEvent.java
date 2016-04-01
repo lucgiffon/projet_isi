@@ -4,14 +4,14 @@ import java.sql.ResultSet;
 import java.util.EventObject;
 
 public class CountryListChangedEvent extends EventObject {
-	private ResultSet countryList;
+	private ResultSet newCountryList;
  
 	public CountryListChangedEvent(Object source, ResultSet values) {
 		super(source);
-		this.countryList = values;
+		this.newCountryList = values;
 	}
 
 	public ResultSet getCountryList() {
-		return countryList;
+		return newCountryList;
 	}
 }
