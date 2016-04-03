@@ -2,41 +2,26 @@ package view;
 
 
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Font;
 
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Hashtable;
-import java.util.Map.Entry;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.swing.AbstractButton;
-import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-
-import org.geotools.referencing.operation.projection.NewZealandMapGrid;
-
-import model.MapChangedEvent;
 
 import controler.MapControler;
 
 
-@SuppressWarnings("serial")
 public class WindowSourcesView {
 	
 	private JFrame frame;
@@ -137,8 +122,6 @@ public class WindowSourcesView {
 					dates.put("HomicidesIntentionnels", Integer.parseInt(item.toString()));
 					controler.userQuery(dates, pays);
 					}
-					
-					System.out.println(item);
 				}
 			}
 		});
@@ -206,7 +189,6 @@ public class WindowSourcesView {
 						dates.put("MortaliteInfantile", Integer.parseInt(item.toString()));
 						controler.userQuery(dates, pays);
 					}
-					System.out.println(item);
 				}
 			}
 		});
@@ -264,7 +246,6 @@ public class WindowSourcesView {
 						dates.put("Chomage", Integer.parseInt(item.toString()));
 						controler.userQuery(dates, pays);
 					}
-					System.out.println(item);
 				}
 			}
 		});
@@ -301,8 +282,6 @@ public class WindowSourcesView {
 						pays.add(countryList.get(item.toString()));
 						controler.userQuery(dates, pays); 
 					}
-					
-					System.out.println(item);
 				}
 				
 			}
@@ -328,7 +307,6 @@ public class WindowSourcesView {
 						pays.add(countryList.get(item.toString()));
 						controler.userQuery(dates, pays); 
 					}
-					System.out.println(item);
 				}
 				
 			}
@@ -354,8 +332,6 @@ public class WindowSourcesView {
 						pays.add(countryList.get(item.toString()));
 						controler.userQuery(dates, pays); 
 					}
-					
-					System.out.println(item);
 				}
 				
 			}
