@@ -12,8 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.Map.Entry;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
@@ -62,8 +67,8 @@ public class WindowSourcesView {
 		comboBoxPaysC.disable();
 		
 		final int[] datesHI = new int[16];
-    	int[] datesMI = new int[52];
-    	int[] datesC = new int[21];
+    	final int[] datesMI = new int[52];
+    	final int[] datesC = new int[21];
     	
     	for(int i = 1995, j = 0; j <= datesHI.length - 1; i++, j++)
     		datesHI[j] = i;
@@ -88,13 +93,30 @@ public class WindowSourcesView {
 	    		if (selected == true){
 	    			comboBoxHI.enable();
 	    			comboBoxPaysHI.enable();
+	    			
+	    			
+	    			// *******************  Comportement attendu ***************
+	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
+	    			for (int i : datesHI) {
+						dates.put("HomicideIntentionnel", i);
+					}
+					controler.userQuery(dates, pays); 
+	    			
+	    			
+	    			
+	    			/* *************** Test en dure *****************
+	    			ArrayList<String> pays = new ArrayList<String>();
+	    			dates.put("HomicidesIntentionnels", 2000);
+	    			pays.add("GBR");
+	    			controler.userQuery(dates, pays); */
+	    			
 	    			//TODO action sur le bouton Homicides Intentionnels
 	    		}
 	    		else {
 	    			comboBoxHI.disable();
 	    			comboBoxHI.setSelectedIndex(0);
 	    			comboBoxPaysHI.disable();
-	    			//comboBoxPaysHI.setSelectedIndex(0);
+	    			comboBoxPaysHI.setSelectedIndex(0);
 	    			//TODO on relache la table qui affecte les Homicides Intentionnels
 	    		}
 	        	
@@ -111,10 +133,7 @@ public class WindowSourcesView {
 			public void itemStateChanged(ItemEvent event) {
 				Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
-					ArrayList<String> pays = new ArrayList<String>();
-					pays.add("FRA");
-					// TODO Ajout des pays a countryList
-					
+					ArrayList<String> pays = new ArrayList<String>(countryList.values());				
 					dates.put("HomicidesIntentionnels", Integer.parseInt(item.toString()));
 					dates.put("Chomage", -1);
 					dates.put("MortaliteInfantile", -1);
@@ -174,6 +193,11 @@ public class WindowSourcesView {
 			public void itemStateChanged(ItemEvent event) {
 			Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
+					ArrayList<String> pays = new ArrayList<String>(countryList.values());				
+					dates.put("HomicidesIntentionnels", -1);
+					dates.put("Chomage", -1);
+					dates.put("MortaliteInfantile", Integer.parseInt(item.toString()));
+					controler.userQuery(dates, pays);
 					System.out.println(item);
 					//TODO Ajouter la valeur de item a la hashtable contenant la date des Mortalité Infantile
 				}
@@ -218,6 +242,11 @@ public class WindowSourcesView {
 			public void itemStateChanged(ItemEvent event) {
 			Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
+					ArrayList<String> pays = new ArrayList<String>(countryList.values());				
+					dates.put("HomicidesIntentionnels", -1);
+					dates.put("Chomage", Integer.parseInt(item.toString()));
+					dates.put("MortaliteInfantile", -1);
+					controler.userQuery(dates, pays);
 					System.out.println(item);
 					//TODO Ajouter la valeur de item a la hashtable contenant la date des Chômage
 				}
@@ -239,11 +268,18 @@ public class WindowSourcesView {
 		
 		comboBoxPaysHI.setBounds(544, 68, 185, 24);
 		comboBoxPaysHI.addItem("");
+		SortedSet<String> paysHI = new TreeSet<String>(countryList.keySet());
+		for (String string : paysHI) {
+			comboBoxPaysHI.addItem(string);
+		}
+		/*for (int i = 0; i <= paysHI.size(); i++)
+			comboBoxPaysHI.addItem(paysHI.add(e));*/
 		frame.getContentPane().add(comboBoxPaysHI);
 		comboBoxPaysHI.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent event) {
 			Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
+					
 					System.out.println(item);
 					//TODO Ajouter la valeur de item a la hashtable contenant le pays des Homicides Intentionnels
 				}
@@ -253,6 +289,10 @@ public class WindowSourcesView {
 		
 		comboBoxPaysMI.setBounds(544, 150, 185, 24);
 		comboBoxPaysMI.addItem("");
+		SortedSet<String> paysMI = new TreeSet<String>(countryList.keySet());
+		for (String string : paysMI) {
+			comboBoxPaysMI.addItem(string);
+		}
 		frame.getContentPane().add(comboBoxPaysMI);
 		comboBoxPaysMI.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent event) {
@@ -267,6 +307,10 @@ public class WindowSourcesView {
 		
 		comboBoxPaysC.setBounds(544, 236, 185, 24);
 		comboBoxPaysC.addItem("");
+		SortedSet<String> paysC = new TreeSet<String>(countryList.keySet());
+		for (String string : paysC) {
+			comboBoxPaysC.addItem(string);
+		}
 		frame.getContentPane().add(comboBoxPaysC);
 		comboBoxPaysC.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent event) {
