@@ -33,7 +33,7 @@ public class MapModel {
 				+ "LEFT JOIN ViewHomicidesIntentionnels HI ON HI.countryCode = CT.code "
 				+ "LEFT JOIN ViewMortaliteInfantile MI ON MI.countryCode = CT.code "
 				+ "WHERE C.countryCode = CT.code OR HI.countryCode = CT.code OR MI.countryCode = CT.code;" ;
-		
+		System.out.println("[QUERY] " + queryString);
 		statement = connection.createStatement();
 		ResultSet values = statement.executeQuery(queryString);
 		
@@ -56,6 +56,7 @@ public class MapModel {
 	public void searchCountries() throws SQLException {
 		String queryString;
 		queryString = "SELECT name, code FROM ViewCountries;";
+		System.out.println("[QUERY] " + queryString);
 		statement = connection.createStatement();
 		ResultSet values = statement.executeQuery(queryString);
 		
