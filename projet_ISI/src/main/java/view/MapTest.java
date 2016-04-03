@@ -48,7 +48,7 @@ public class MapTest extends MapView implements ActionListener {
 		pays.add("UKR");
 		pays.add("GBR");
 		dates.put("Chomage", -1);
-		dates.put("MortaliteInfantile", 1995);
+		dates.put("MortaliteInfantile", -1);
 		dates.put("HomicidesIntentionnels", 1995);
 		getControler().userQuery(dates, pays);
 	}

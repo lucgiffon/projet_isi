@@ -47,6 +47,9 @@ public class WindowSourcesView {
 	public WindowSourcesView(final MapControler controler, final Hashtable<String, String> countryList) {
 		this.countryList = countryList;
 		this.controler = controler;
+		dates.put("HomicidesIntentionnels", -1);
+		dates.put("MortaliteInfantile", -1);
+		dates.put("Chomage", -1);
 		
 		final JComboBox comboBoxHI = new JComboBox();
 		final JComboBox comboBoxMI = new JComboBox();
@@ -94,30 +97,21 @@ public class WindowSourcesView {
 	    			comboBoxHI.enable();
 	    			comboBoxPaysHI.enable();
 	    			
-	    			
-	    			// *******************  Comportement attendu ***************
 	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
-	    			for (int i : datesHI) {
-						dates.put("HomicideIntentionnel", i);
-					}
+	    			for (int i = 0; i < datesHI.length; i++)
+						dates.put("HomicidesIntentionnels", datesHI[i]);
 					controler.userQuery(dates, pays); 
 	    			
-	    			
-	    			
-	    			/* *************** Test en dure *****************
-	    			ArrayList<String> pays = new ArrayList<String>();
-	    			dates.put("HomicidesIntentionnels", 2000);
-	    			pays.add("GBR");
-	    			controler.userQuery(dates, pays); */
-	    			
-	    			//TODO action sur le bouton Homicides Intentionnels
 	    		}
 	    		else {
 	    			comboBoxHI.disable();
 	    			comboBoxHI.setSelectedIndex(0);
 	    			comboBoxPaysHI.disable();
 	    			comboBoxPaysHI.setSelectedIndex(0);
-	    			//TODO on relache la table qui affecte les Homicides Intentionnels
+	    			
+	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
+	    			dates.put("HomicidesIntentionnels", -1);
+	    			controler.userQuery(dates, pays);
 	    		}
 	        	
 	    	}
@@ -133,16 +127,21 @@ public class WindowSourcesView {
 			public void itemStateChanged(ItemEvent event) {
 				Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
+					if (item.equals(""))	{
+						ArrayList<String> pays = new ArrayList<String>(countryList.values());
+		    			for (int i = 0; i < datesHI.length; i++)
+							dates.put("HomicidesIntentionnels", datesHI[i]);
+						controler.userQuery(dates, pays); 
+					}
+					else {
+						
 					ArrayList<String> pays = new ArrayList<String>(countryList.values());				
 					dates.put("HomicidesIntentionnels", Integer.parseInt(item.toString()));
-					dates.put("Chomage", -1);
-					dates.put("MortaliteInfantile", -1);
 					controler.userQuery(dates, pays);
+					}
 					
 					System.out.println(item);
-					//TODO Ajouter la valeur de item a la hashtable contenant la date des Homicides Intentionnels
 				}
-				
 			}
 		});
 		
@@ -166,14 +165,21 @@ public class WindowSourcesView {
 	    		if (selected == true){
 	    			comboBoxMI.enable();
 	    			comboBoxPaysMI.enable();
-	    			//TODO action sur le bouton Mortalité Infantile
+	    			
+	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
+	    			for (int i = 0; i < datesMI.length; i++)
+						dates.put("MortaliteInfantile", datesMI[i]);
+					controler.userQuery(dates, pays); 
 	    		}
 	    		else {
 	    			comboBoxMI.disable();
 	    			comboBoxMI.setSelectedIndex(0);
 	    			comboBoxPaysMI.disable();
-	    			//comboBoxPaysMI.setSelectedIndex(0);
-	    			//TODO on relache la table qui affecte les Mortalité Infantile
+	    			comboBoxPaysMI.setSelectedIndex(0);
+	    			
+	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
+	    			dates.put("MortaliteInfantile", -1);
+	    			controler.userQuery(dates, pays);
 	    		}
 	        	
 	    	}
@@ -193,15 +199,19 @@ public class WindowSourcesView {
 			public void itemStateChanged(ItemEvent event) {
 			Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
-					ArrayList<String> pays = new ArrayList<String>(countryList.values());				
-					dates.put("HomicidesIntentionnels", -1);
-					dates.put("Chomage", -1);
-					dates.put("MortaliteInfantile", Integer.parseInt(item.toString()));
-					controler.userQuery(dates, pays);
+					if (item.equals(""))	{
+						ArrayList<String> pays = new ArrayList<String>(countryList.values());
+		    			for (int i = 0; i < datesMI.length; i++)
+							dates.put("MortaliteInfantile", datesMI[i]);
+						controler.userQuery(dates, pays); 
+					}
+					else {
+						ArrayList<String> pays = new ArrayList<String>(countryList.values());				
+						dates.put("MortaliteInfantile", Integer.parseInt(item.toString()));
+						controler.userQuery(dates, pays);
+					}
 					System.out.println(item);
-					//TODO Ajouter la valeur de item a la hashtable contenant la date des Mortalité Infantile
 				}
-				
 			}
 		});
 		
@@ -215,14 +225,21 @@ public class WindowSourcesView {
 	    		if (selected == true){
 	    			comboBoxC.enable();
 	    			comboBoxPaysC.enable();
-	    			//TODO action sur le bouton Mortalité Infantile
+	    			
+	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
+	    			for (int i = 0; i < datesC.length; i++)
+						dates.put("Chomage", datesC[i]);
+					controler.userQuery(dates, pays); 
 	    		}
 	    		else {
 	    			comboBoxC.disable();
 	    			comboBoxC.setSelectedIndex(0);
 	    			comboBoxPaysC.disable();
-	    			//comboBoxPaysC.setSelectedIndex(0);
-	    			//TODO on relache la table qui affecte les Mortalité Infantile
+	    			comboBoxPaysC.setSelectedIndex(0);
+	    			
+	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
+	    			dates.put("Chomage", -1);
+	    			controler.userQuery(dates, pays);
 	    		}
 	        	
 	    	}
@@ -242,15 +259,19 @@ public class WindowSourcesView {
 			public void itemStateChanged(ItemEvent event) {
 			Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
-					ArrayList<String> pays = new ArrayList<String>(countryList.values());				
-					dates.put("HomicidesIntentionnels", -1);
-					dates.put("Chomage", Integer.parseInt(item.toString()));
-					dates.put("MortaliteInfantile", -1);
-					controler.userQuery(dates, pays);
+					if (item.equals(""))	{
+						ArrayList<String> pays = new ArrayList<String>(countryList.values());
+		    			for (int i = 0; i < datesC.length; i++)
+							dates.put("Chomage", datesC[i]);
+						controler.userQuery(dates, pays); 
+					}
+					else {
+						ArrayList<String> pays = new ArrayList<String>(countryList.values());				
+						dates.put("Chomage", Integer.parseInt(item.toString()));
+						controler.userQuery(dates, pays);
+					}
 					System.out.println(item);
-					//TODO Ajouter la valeur de item a la hashtable contenant la date des Chômage
 				}
-				
 			}
 		});
 		
@@ -272,16 +293,22 @@ public class WindowSourcesView {
 		for (String string : paysHI) {
 			comboBoxPaysHI.addItem(string);
 		}
-		/*for (int i = 0; i <= paysHI.size(); i++)
-			comboBoxPaysHI.addItem(paysHI.add(e));*/
 		frame.getContentPane().add(comboBoxPaysHI);
 		comboBoxPaysHI.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent event) {
 			Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
+					if (item.equals(""))	{
+						ArrayList<String> pays = new ArrayList<String>(countryList.values());
+						controler.userQuery(dates, pays); 
+					}
+					else {
+						ArrayList<String> pays = new ArrayList<String>(countryList.keySet());
+						pays.add(countryList.get(item.toString()));
+						controler.userQuery(dates, pays); 
+					}
 					
 					System.out.println(item);
-					//TODO Ajouter la valeur de item a la hashtable contenant le pays des Homicides Intentionnels
 				}
 				
 			}
@@ -298,8 +325,16 @@ public class WindowSourcesView {
 			public void itemStateChanged(ItemEvent event) {
 			Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
+					if (item.equals(""))	{
+						ArrayList<String> pays = new ArrayList<String>(countryList.values());
+						controler.userQuery(dates, pays); 
+					}
+					else {
+						ArrayList<String> pays = new ArrayList<String>(countryList.keySet());
+						pays.add(countryList.get(item.toString()));
+						controler.userQuery(dates, pays); 
+					}
 					System.out.println(item);
-					//TODO Ajouter la valeur de item a la hashtable contenant le pays des Mortalité Infantile
 				}
 				
 			}
@@ -316,8 +351,17 @@ public class WindowSourcesView {
 			public void itemStateChanged(ItemEvent event) {
 			Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
+					if (item.equals(""))	{
+						ArrayList<String> pays = new ArrayList<String>(countryList.values());
+						controler.userQuery(dates, pays); 
+					}
+					else {
+						ArrayList<String> pays = new ArrayList<String>(countryList.keySet());
+						pays.add(countryList.get(item.toString()));
+						controler.userQuery(dates, pays); 
+					}
+					
 					System.out.println(item);
-					//TODO Ajouter la valeur de item a la hashtable contenant le pays des Chômage
 				}
 				
 			}
