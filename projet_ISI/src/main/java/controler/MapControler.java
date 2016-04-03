@@ -4,9 +4,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+
 import model.MapModel;
 import view.MapTest;
 import view.MapView;
+import view.StyleLab;
 
 public class MapControler {
 	private MapView graphicInterface;
@@ -15,7 +17,8 @@ public class MapControler {
  
 	public MapControler (MapModel model){
 		this.model = model;
-		this.graphicInterface = new MapTest(this);
+		//this.graphicInterface = new MapTest(this);
+		this.graphicInterface = new StyleLab(this);
 		addListenersToModel();		
 	}
  
@@ -26,7 +29,7 @@ public class MapControler {
 	public void displayViews(){
 		graphicInterface.display();
 		//((MapTest) graphicInterface).actionPerformed();
-		((MapTest) graphicInterface).actionPerformed2();
+		//((MapTest) graphicInterface).actionPerformed2();
 	}
  
 	public void closeViews(){

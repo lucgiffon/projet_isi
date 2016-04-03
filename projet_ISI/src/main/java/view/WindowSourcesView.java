@@ -1,14 +1,19 @@
 package view;
 
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map.Entry;
 
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
@@ -19,14 +24,24 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
+import org.geotools.referencing.operation.projection.NewZealandMapGrid;
+
+import model.MapChangedEvent;
+
+import controler.MapControler;
+
 
 @SuppressWarnings("serial")
 public class WindowSourcesView {
 	
-	public JFrame frame;
-	public JTextField txtChoixDuMode;
+	private JFrame frame;
+	private MapControler controler;
+	private Hashtable<String, Integer> dates = new Hashtable<String, Integer>();
+	private Hashtable<String, String> countryList = new Hashtable<String, String>();
 	
-	public WindowSourcesView() {
+	public WindowSourcesView(final MapControler controler, final Hashtable<String, String> countryList) {
+		this.countryList = countryList;
+		this.controler = controler;
 		
 		final JComboBox comboBoxHI = new JComboBox();
 		final JComboBox comboBoxMI = new JComboBox();
@@ -46,7 +61,7 @@ public class WindowSourcesView {
 		comboBoxPaysMI.disable();
 		comboBoxPaysC.disable();
 		
-		int[] datesHI = new int[16];
+		final int[] datesHI = new int[16];
     	int[] datesMI = new int[52];
     	int[] datesC = new int[21];
     	
@@ -96,6 +111,15 @@ public class WindowSourcesView {
 			public void itemStateChanged(ItemEvent event) {
 				Object item = event.getItem();
 				if (event.getStateChange() == ItemEvent.SELECTED) {
+					ArrayList<String> pays = new ArrayList<String>();
+					pays.add("FRA");
+					// TODO Ajout des pays a countryList
+					
+					dates.put("HomicidesIntentionnels", Integer.parseInt(item.toString()));
+					dates.put("Chomage", -1);
+					dates.put("MortaliteInfantile", -1);
+					controler.userQuery(dates, pays);
+					
 					System.out.println(item);
 					//TODO Ajouter la valeur de item a la hashtable contenant la date des Homicides Intentionnels
 				}
@@ -107,11 +131,11 @@ public class WindowSourcesView {
 		lblAnne_1.setBounds(304, 73, 70, 15);
 		frame.getContentPane().add(lblAnne_1);
 		
-		txtChoixDuMode = new JTextField();
-		txtChoixDuMode.setText("Choix du mode de visualisation de MyMap");
-		txtChoixDuMode.setBounds(242, 12, 267, 19);
-		frame.getContentPane().add(txtChoixDuMode);
-		txtChoixDuMode.setColumns(10);
+		JLabel lblChoixDuMode = new JLabel("Choix du mode de visualisation de MyMap");
+		lblChoixDuMode.setFont(new Font("Serif", Font.BOLD, 18));
+		lblChoixDuMode.setBackground(Color.WHITE);
+		lblChoixDuMode.setBounds(168, 12, 439, 20);
+		frame.getContentPane().add(lblChoixDuMode);
 		
 		tglbtnMI.setBounds(41, 150, 214, 25);
 		frame.getContentPane().add(tglbtnMI);
@@ -214,6 +238,7 @@ public class WindowSourcesView {
 		frame.getContentPane().add(lblPays_3);
 		
 		comboBoxPaysHI.setBounds(544, 68, 185, 24);
+		comboBoxPaysHI.addItem("");
 		frame.getContentPane().add(comboBoxPaysHI);
 		comboBoxPaysHI.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent event) {
@@ -227,6 +252,7 @@ public class WindowSourcesView {
 		});
 		
 		comboBoxPaysMI.setBounds(544, 150, 185, 24);
+		comboBoxPaysMI.addItem("");
 		frame.getContentPane().add(comboBoxPaysMI);
 		comboBoxPaysMI.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent event) {
@@ -240,6 +266,7 @@ public class WindowSourcesView {
 		});
 		
 		comboBoxPaysC.setBounds(544, 236, 185, 24);
+		comboBoxPaysC.addItem("");
 		frame.getContentPane().add(comboBoxPaysC);
 		comboBoxPaysC.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent event) {
