@@ -98,8 +98,7 @@ public class WindowSourcesView {
 	    			comboBoxPaysHI.enable();
 	    			
 	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
-	    			for (int i = 0; i < datesHI.length; i++)
-						dates.put("HomicidesIntentionnels", datesHI[i]);
+	    			dates.put("HomicidesIntentionnels", datesHI[datesHI.length - 1]);
 					controler.userQuery(dates, pays); 
 	    			
 	    		}
@@ -129,8 +128,7 @@ public class WindowSourcesView {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					if (item.equals(""))	{
 						ArrayList<String> pays = new ArrayList<String>(countryList.values());
-		    			for (int i = 0; i < datesHI.length; i++)
-							dates.put("HomicidesIntentionnels", datesHI[i]);
+		    			dates.put("HomicidesIntentionnels", datesHI[datesHI.length - 1]);
 						controler.userQuery(dates, pays); 
 					}
 					else {
@@ -167,8 +165,7 @@ public class WindowSourcesView {
 	    			comboBoxPaysMI.enable();
 	    			
 	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
-	    			for (int i = 0; i < datesMI.length; i++)
-						dates.put("MortaliteInfantile", datesMI[i]);
+	    			dates.put("MortaliteInfantile", datesMI[datesMI.length - 1]);
 					controler.userQuery(dates, pays); 
 	    		}
 	    		else {
@@ -201,8 +198,7 @@ public class WindowSourcesView {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					if (item.equals(""))	{
 						ArrayList<String> pays = new ArrayList<String>(countryList.values());
-		    			for (int i = 0; i < datesMI.length; i++)
-							dates.put("MortaliteInfantile", datesMI[i]);
+		    			dates.put("MortaliteInfantile", datesMI[datesMI.length - 1]);
 						controler.userQuery(dates, pays); 
 					}
 					else {
@@ -227,8 +223,7 @@ public class WindowSourcesView {
 	    			comboBoxPaysC.enable();
 	    			
 	    			ArrayList<String> pays = new ArrayList<String>(countryList.values());
-	    			for (int i = 0; i < datesC.length; i++)
-						dates.put("Chomage", datesC[i]);
+					dates.put("Chomage", datesC[datesC.length - 1]);
 					controler.userQuery(dates, pays); 
 	    		}
 	    		else {
@@ -261,8 +256,7 @@ public class WindowSourcesView {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					if (item.equals(""))	{
 						ArrayList<String> pays = new ArrayList<String>(countryList.values());
-		    			for (int i = 0; i < datesC.length; i++)
-							dates.put("Chomage", datesC[i]);
+						dates.put("Chomage", datesC[datesC.length - 1]);
 						controler.userQuery(dates, pays); 
 					}
 					else {
