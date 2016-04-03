@@ -55,7 +55,7 @@ public class StyleLab extends MapView {
 	static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
     static FilterFactory filterFactory = CommonFactoryFinder.getFilterFactory();
     private MapControler controler;
-    private Hashtable<String, String> countryList;
+    private Hashtable<String, String> countryList = new Hashtable<String, String>();
     
     public StyleLab(MapControler controler) {
     	super(controler);
@@ -68,6 +68,7 @@ public class StyleLab extends MapView {
      * the shapefile on screen
      */
     void displayShapefile() throws Exception {
+    	this.controler.getCountryList();
     	File jar= new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
 //    	System.out.println(jar.getParent() + "/classes/countries/countries.shp");
         File file = new File(jar.getParent() + "/classes/countries/countries.shp");
@@ -220,6 +221,7 @@ public class StyleLab extends MapView {
 		// 1 -> nomdu pays
 		// 2 -> codeCOuntry
 		ResultSet values = event.getCountryList();
+
 		
 		try {
 			while (values.next()) {

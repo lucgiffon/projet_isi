@@ -37,7 +37,7 @@ public class WindowSourcesView {
 	private JFrame frame;
 	private MapControler controler;
 	private Hashtable<String, Integer> dates = new Hashtable<String, Integer>();
-	private Hashtable<String, String> countryList = new Hashtable<String, String>();
+	private Hashtable<String, String> countryList;
 	
 	public WindowSourcesView(final MapControler controler, final Hashtable<String, String> countryList) {
 		this.countryList = countryList;
